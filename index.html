@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigerian Daily Meal Planner - Discover Authentic Nigerian Cuisine</title>
+    <meta name="description"
+        content="Generate daily Nigerian meal plans with authentic breakfast, lunch, and dinner dishes plus refreshing cocktails. Explore the rich flavors of Nigerian cuisine.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <span class="logo-emoji">🍲</span>
+                    </div>
+                    <div class="brand-text">
+                        <h1>Naija Meal Planner</h1>
+                        <p class="subtitle">Authentic Nigerian Cuisine Daily</p>
+                    </div>
+                </div>
+                <div class="header-date" id="currentDate"></div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title">Discover Your Daily Nigerian Feast</h2>
+                <p class="hero-description">Get personalized meal suggestions featuring authentic Nigerian dishes for
+                    breakfast, lunch, and dinner, complete with delicious cocktails to complement your meals.</p>
+                <button class="generate-btn" id="generateBtn">
+                    <span class="btn-icon">✨</span>
+                    <span class="btn-text">Generate Today's Menu</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+            <div class="hero-illustration">
+                <div class="floating-dish dish-1">🥘</div>
+                <div class="floating-dish dish-2">🍛</div>
+                <div class="floating-dish dish-3">🍹</div>
+                <div class="floating-dish dish-4">🥗</div>
+            </div>
+        </section>
+
+        <!-- Loading Section -->
+        <section class="loading-section" id="loadingSection" style="display: none;">
+            <div class="loading-container">
+                <div class="cooking-animation">
+                    <div class="pot">🍲</div>
+                    <div class="steam">💨</div>
+                </div>
+                <h3>Preparing Your Menu...</h3>
+                <p class="loading-text">Selecting the finest Nigerian dishes</p>
+            </div>
+        </section>
+
+        <!-- Meal Plan Section -->
+        <section class="meal-plan-section" id="mealPlanSection" style="display: none;">
+            <div class="section-header">
+                <h2>Your Daily Nigerian Menu</h2>
+                <button class="refresh-btn" id="refreshBtn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C11.5719 3 13.0239 3.54305 14.1754 4.45732M14.1754 4.45732L14 2M14.1754 4.45732L17 4"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Generate New Menu
+                </button>
+            </div>
+
+            <div class="meals-grid">
+                <!-- Breakfast Card -->
+                <div class="meal-card breakfast-card">
+                    <div class="meal-header">
+                        <div class="meal-icon">🌅</div>
+                        <div class="meal-info">
+                            <h3>Breakfast</h3>
+                            <p class="meal-time">7:00 AM - 10:00 AM</p>
+                        </div>
+                    </div>
+                    <div class="meal-content">
+                        <div class="dish-image" id="breakfastImage">
+                            <span class="dish-emoji">🥞</span>
+                        </div>
+                        <h4 class="dish-name" id="breakfastName">Akara & Pap</h4>
+                        <p class="dish-description" id="breakfastDescription">Crispy bean cakes served with smooth corn
+                            pudding</p>
+                        <div class="dish-tags" id="breakfastTags">
+                            <span class="tag">Protein-Rich</span>
+                            <span class="tag">Traditional</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lunch Card -->
+                <div class="meal-card lunch-card">
+                    <div class="meal-header">
+                        <div class="meal-icon">☀️</div>
+                        <div class="meal-info">
+                            <h3>Lunch</h3>
+                            <p class="meal-time">12:00 PM - 3:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="meal-content">
+                        <div class="dish-image" id="lunchImage">
+                            <span class="dish-emoji">🍛</span>
+                        </div>
+                        <h4 class="dish-name" id="lunchName">Jollof Rice</h4>
+                        <p class="dish-description" id="lunchDescription">Flavorful rice cooked in tomato sauce with
+                            spices</p>
+                        <div class="dish-tags" id="lunchTags">
+                            <span class="tag">Spicy</span>
+                            <span class="tag">Popular</span>
+                        </div>
+                        <div class="cocktail-pairing">
+                            <div class="cocktail-icon">🍹</div>
+                            <div class="cocktail-info">
+                                <p class="cocktail-label">Paired with</p>
+                                <h5 class="cocktail-name" id="lunchCocktail">Chapman</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dinner Card -->
+                <div class="meal-card dinner-card">
+                    <div class="meal-header">
+                        <div class="meal-icon">🌙</div>
+                        <div class="meal-info">
+                            <h3>Dinner</h3>
+                            <p class="meal-time">6:00 PM - 9:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="meal-content">
+                        <div class="dish-image" id="dinnerImage">
+                            <span class="dish-emoji">🥘</span>
+                        </div>
+                        <h4 class="dish-name" id="dinnerName">Egusi Soup</h4>
+                        <p class="dish-description" id="dinnerDescription">Rich melon seed soup with vegetables and meat
+                        </p>
+                        <div class="dish-tags" id="dinnerTags">
+                            <span class="tag">Hearty</span>
+                            <span class="tag">Nutritious</span>
+                        </div>
+                        <div class="cocktail-pairing">
+                            <div class="cocktail-icon">🍹</div>
+                            <div class="cocktail-info">
+                                <p class="cocktail-label">Paired with</p>
+                                <h5 class="cocktail-name" id="dinnerCocktail">Zobo Mojito</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cocktail Details Section -->
+            <div class="cocktails-section">
+                <h3 class="section-title">Today's Cocktails</h3>
+                <div class="cocktails-grid">
+                    <div class="cocktail-card">
+                        <div class="cocktail-header">
+                            <span class="cocktail-emoji">🍹</span>
+                            <h4 id="lunchCocktailDetail">Chapman</h4>
+                        </div>
+                        <p class="cocktail-desc" id="lunchCocktailDesc">A refreshing Nigerian mocktail with Fanta,
+                            Sprite, grenadine, Angostura bitters, and fresh fruits</p>
+                        <div class="cocktail-meta">
+                            <span class="meta-item">🕐 Lunch</span>
+                            <span class="meta-item">❄️ Chilled</span>
+                        </div>
+                    </div>
+                    <div class="cocktail-card">
+                        <div class="cocktail-header">
+                            <span class="cocktail-emoji">🍷</span>
+                            <h4 id="dinnerCocktailDetail">Zobo Mojito</h4>
+                        </div>
+                        <p class="cocktail-desc" id="dinnerCocktailDesc">Traditional hibiscus drink infused with mint,
+                            lime, and a splash of rum for a tropical twist</p>
+                        <div class="cocktail-meta">
+                            <span class="meta-item">🕐 Dinner</span>
+                            <span class="meta-item">🌿 Herbal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopping List -->
+            <div class="shopping-section">
+                <div class="shopping-header">
+                    <h3>Shopping List</h3>
+                    <button class="copy-btn" id="copyListBtn">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 1H3C2.46957 1 1.96086 1.21071 1.58579 1.58579C1.21071 1.96086 1 2.46957 1 3V12M5 5H14C15.1046 5 16 5.89543 16 7V16C16 17.1046 15.1046 18 14 18H5C3.89543 18 3 17.1046 3 16V7C3 5.89543 3.89543 5 5 5Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Copy List
+                    </button>
+                </div>
+                <div class="shopping-list" id="shoppingList">
+                    <div class="list-category">
+                        <h4>Breakfast Ingredients</h4>
+                        <ul id="breakfastIngredients">
+                            <li>Black-eyed beans</li>
+                            <li>Corn flour</li>
+                            <li>Palm oil</li>
+                        </ul>
+                    </div>
+                    <div class="list-category">
+                        <h4>Lunch Ingredients</h4>
+                        <ul id="lunchIngredients">
+                            <li>Rice</li>
+                            <li>Tomatoes</li>
+                            <li>Chicken</li>
+                        </ul>
+                    </div>
+                    <div class="list-category">
+                        <h4>Dinner Ingredients</h4>
+                        <ul id="dinnerIngredients">
+                            <li>Egusi seeds</li>
+                            <li>Spinach</li>
+                            <li>Beef</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>🇳🇬 Celebrating Nigerian Culinary Heritage</p>
+            <p class="footer-note">Meal suggestions are for inspiration. Adjust portions and ingredients to your
+                preference.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
