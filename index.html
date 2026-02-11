@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>J-Quality Nigerian Daily Meal Planner - Discover Authentic Nigerian Cuisine</title>
+    <title>J Quality Nigerian Meal Planner - Discover Authentic Nigerian Cuisine</title>
     <meta name="description"
         content="Generate daily Nigerian meal plans with authentic breakfast, lunch, and dinner dishes plus refreshing cocktails. Explore the rich flavors of Nigerian cuisine.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,15 +24,53 @@
                     <div class="logo">
                         <span class="logo-emoji">🍲</span>
                     </div>
-                  <div class="brand-text">
-  <h1>J-Quality Nigerian Daily Meal Planner</h1>
-  <p class="subtitle">Authentic Nigerian Cuisine Daily</p>
-</div>
-
+                    <div class="brand-text">
+                        <h1>J Quality Nigerian Meal Planner</h1>
+                        <p class="subtitle">Authentic Nigerian Cuisine Daily</p>
+                    </div>
                 </div>
                 <div class="header-date" id="currentDate"></div>
             </div>
         </header>
+
+        <!-- Monetization Overlay -->
+        <div class="monetization-overlay" id="monetizationOverlay">
+            <div class="monetization-card">
+                <div class="monetization-icon">✨</div>
+                <h2>Get Your Daily Nigerian Meal Plans</h2>
+                <p>Unlock authentic breakfast, lunch, and dinner ideas complete with cocktail pairings.</p>
+                <div class="trial-badge">Free for 14 Days</div>
+                <p class="trial-text">Paid access after trial ends.</p>
+
+                <form class="email-form" id="emailForm" action="https://formspree.io/f/mdalabrg" method="POST">
+                    <input type="email" name="email" id="userEmail" placeholder="Enter your email address" required>
+                    <button type="submit" class="start-trial-btn">Start Free Trial</button>
+                </form>
+                <p class="secure-note" id="secureNote">🔒 Secure access. Cancel anytime.</p>
+
+                <!-- Expired State (Hidden by default) -->
+                <div id="expiredState" style="display: none;">
+                    <p class="expired-msg" style="color: #e74c3c; font-weight: bold; margin-bottom: 1rem;">Trial Period
+                        Expired</p>
+                    <a href="https://PayPal.Me/jqualitymeal/5GBP" target="_blank" class="start-trial-btn"
+                        style="text-decoration: none; display: inline-block; background: var(--accent-orange); margin-bottom: 1rem;">Subscribe
+                        for £5/month</a>
+
+                    <div style="margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem;">
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">Have an activation code?</p>
+                        <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                            <input type="text" id="passcodeInput" placeholder="Enter Code (e.g. MEAL30)"
+                                style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; width: 60%;">
+                            <button id="verifyCodeBtn"
+                                style="padding: 0.5rem 1rem; background: var(--primary-green); color: white; border: none; border-radius: 4px; cursor: pointer;">Verify</button>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 1rem;">Already subscribed? <a href="#"
+                            id="loginLink" style="color: var(--primary-green);">Log in</a></p>
+                </div>
+            </div>
+        </div>
 
         <!-- Hero Section -->
         <section class="hero-section">
@@ -101,6 +139,16 @@
                             <span class="tag">Protein-Rich</span>
                             <span class="tag">Traditional</span>
                         </div>
+                        <button class="view-recipe-btn" onclick="toggleRecipe('breakfast', this)">
+                            <span class="recipe-icon">📖</span>
+                            <span>View Recipe</span>
+                        </button>
+                        <div class="recipe-section" id="breakfastRecipe" style="display: none;">
+                            <h5>How to Make It</h5>
+                            <ol class="recipe-steps" id="breakfastRecipeSteps">
+                                <!-- Recipe steps will be populated by JavaScript -->
+                            </ol>
+                        </div>
                     </div>
                 </div>
 
@@ -123,6 +171,16 @@
                         <div class="dish-tags" id="lunchTags">
                             <span class="tag">Spicy</span>
                             <span class="tag">Popular</span>
+                        </div>
+                        <button class="view-recipe-btn" onclick="toggleRecipe('lunch', this)">
+                            <span class="recipe-icon">📖</span>
+                            <span>View Recipe</span>
+                        </button>
+                        <div class="recipe-section" id="lunchRecipe" style="display: none;">
+                            <h5>How to Make It</h5>
+                            <ol class="recipe-steps" id="lunchRecipeSteps">
+                                <!-- Recipe steps will be populated by JavaScript -->
+                            </ol>
                         </div>
                         <div class="cocktail-pairing">
                             <div class="cocktail-icon">🍹</div>
@@ -154,6 +212,16 @@
                             <span class="tag">Hearty</span>
                             <span class="tag">Nutritious</span>
                         </div>
+                        <button class="view-recipe-btn" onclick="toggleRecipe('dinner', this)">
+                            <span class="recipe-icon">📖</span>
+                            <span>View Recipe</span>
+                        </button>
+                        <div class="recipe-section" id="dinnerRecipe" style="display: none;">
+                            <h5>How to Make It</h5>
+                            <ol class="recipe-steps" id="dinnerRecipeSteps">
+                                <!-- Recipe steps will be populated by JavaScript -->
+                            </ol>
+                        </div>
                         <div class="cocktail-pairing">
                             <div class="cocktail-icon">🍹</div>
                             <div class="cocktail-info">
@@ -180,6 +248,16 @@
                             <span class="meta-item">🕐 Lunch</span>
                             <span class="meta-item">❄️ Chilled</span>
                         </div>
+                        <button class="view-recipe-btn" onclick="toggleRecipe('lunchCocktail', this)">
+                            <span class="recipe-icon">📖</span>
+                            <span>View Preparation</span>
+                        </button>
+                        <div class="recipe-section" id="lunchCocktailRecipe" style="display: none;">
+                            <h5>Preparation Steps</h5>
+                            <ol class="recipe-steps" id="lunchCocktailRecipeSteps">
+                                <!-- Recipe steps will be populated by JavaScript -->
+                            </ol>
+                        </div>
                     </div>
                     <div class="cocktail-card">
                         <div class="cocktail-header">
@@ -191,6 +269,16 @@
                         <div class="cocktail-meta">
                             <span class="meta-item">🕐 Dinner</span>
                             <span class="meta-item">🌿 Herbal</span>
+                        </div>
+                        <button class="view-recipe-btn" onclick="toggleRecipe('dinnerCocktail', this)">
+                            <span class="recipe-icon">📖</span>
+                            <span>View Preparation</span>
+                        </button>
+                        <div class="recipe-section" id="dinnerCocktailRecipe" style="display: none;">
+                            <h5>Preparation Steps</h5>
+                            <ol class="recipe-steps" id="dinnerCocktailRecipeSteps">
+                                <!-- Recipe steps will be populated by JavaScript -->
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -243,12 +331,13 @@
             <p>🇳🇬 Celebrating Nigerian Culinary Heritage</p>
             <p class="footer-note">Meal suggestions are for inspiration. Adjust portions and ingredients to your
                 preference.</p>
+            <button id="resetTrialBtn"
+                style="background: none; border: none; color: #aaa; font-size: 0.7rem; cursor: pointer; margin-top: 10px;">Reset
+                Trial (Testing)</button>
         </footer>
     </div>
 
     <script src="script.js"></script>
 </body>
 
-
 </html>
-
